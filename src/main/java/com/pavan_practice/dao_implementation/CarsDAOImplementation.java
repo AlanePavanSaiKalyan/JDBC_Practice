@@ -48,12 +48,12 @@ public class CarsDAOImplementation implements CarsDAO {
     }
 
     @Override
-    public void updateCar(Cars car) {
+    public void updateCar(Cars car,int id) {
         try {
             Connection connection = getConnection();
             PreparedStatement ps = connection.prepareStatement("UPDATE makes set model=? WHERE id=?");
             ps.setString(1, car.getModel());
-            ps.setInt(2,555);
+            ps.setInt(2,id);
             ps.execute();
             System.out.println("Updated "+ car.getModel());
         } catch (Exception e) {

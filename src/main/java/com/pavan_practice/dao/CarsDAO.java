@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CarsDAO {
     void addCar(Cars car,int id);
-    void updateCar(Cars car);
+    void updateCar(Cars car,int id);
     void deleteCar(int id);
 //    List<Cars> getAllMakes();
 }

@@ -7,14 +7,12 @@ import java.sql.Statement;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static void main() {
-        String url = System.getenv("DB_URL"+"april_db");
-        String userName = System.getenv("USER_NAME");
-        String password = System.getenv("DB_PASSWORD");
+
         try{
             Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/april_db",
-                    "postgres",
-                    "Alpha@2001");
+            Connection connection = DriverManager.getConnection(System.getenv("DB_URL")+"april_db",
+                    System.getenv("USER_NAME"),
+                    System.getenv("DB_PASSWORD"));
             Statement statement = connection.createStatement();
             statement.executeQuery("CREATE DATABASE projects_db");
             System.out.println("Database Created Successfully!!");

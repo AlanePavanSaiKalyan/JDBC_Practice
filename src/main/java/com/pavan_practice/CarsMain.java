@@ -15,6 +15,6 @@ public class CarsMain {
 //
 //        }
         CarsDAO cd = new CarsDAOImplementation();
-        cd.addCar(new Cars("Lamborghini", "Huracan evo","Yellow",10,8,"Super"),102);
+        cd.updateCar(new Cars("FORD", "MUSTANG GT","Green",5,6,"Muscle"),555);
     }
 }
