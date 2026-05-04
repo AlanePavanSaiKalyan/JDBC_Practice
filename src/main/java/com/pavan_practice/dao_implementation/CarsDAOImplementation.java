@@ -4,6 +4,7 @@ import com.pavan_practice.dao.CarsDAO;
 import com.pavan_practice.model.Cars;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CarsDAOImplementation implements CarsDAO {
@@ -61,13 +62,33 @@ public class CarsDAOImplementation implements CarsDAO {
         }
     }
 
-//    @Override
-//    public List<Cars> getAllMakes(){
-//
-//    }
+    @Override
+    public List<Cars> getAllMakes(){
+        List<Cars> cars = new ArrayList<>();
+        Connection connection =getConnection();
+        try{
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT  * from makes");
+            while (resultSet.next()){
+                Cars cars1 =new Cars(resultSet.getString("make"),resultSet.getString("model"),resultSet.getString("color"),resultSet.getInt("engineCapacity"),resultSet.getInt("engine"),resultSet.getString("category"));
+                cars.add(cars1);
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return cars;
+     }
 
     @Override
     public void deleteCar( int id){
-
+        Connection connection = getConnection();
+        try{
+            PreparedStatement ps  = connection.prepareStatement("DELETE  from makes where id = ?");
+            ps.setInt(1,id);
+            ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
